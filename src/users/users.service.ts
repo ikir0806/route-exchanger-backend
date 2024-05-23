@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { v1 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserEntity } from './entities/user.entity';
 
@@ -12,7 +11,7 @@ export class UsersService {
     private repository: Repository<UserEntity>,
   ) {}
 
-  async findById(id: string) {
+  async findById(id: number) {
     return this.repository.findOneBy({ id });
   }
 
@@ -21,6 +20,6 @@ export class UsersService {
   }
 
   create(dto: CreateUserDto) {
-    return this.repository.save({ ...dto, description: '', id: v1() });
+    return this.repository.save({ ...dto, description: '' });
   }
 }
