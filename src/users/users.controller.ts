@@ -12,7 +12,9 @@ export class UsersController {
   @Get('/me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  getMe(@UserId() id: number) {
-    return this.usersService.findById(id);
+  async getMe(@UserId() id: number) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...user } = await this.usersService.findById(id);
+    return user;
   }
 }

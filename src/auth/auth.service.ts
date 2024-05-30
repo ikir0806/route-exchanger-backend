@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UserEntity } from 'src/users/entities/user.entity';
@@ -32,7 +32,7 @@ export class AuthService {
       };
     } catch (e) {
       console.log(e);
-      throw new ForbiddenException('Ошбика при регистрации');
+      throw new HttpException('Ошбика при регистрации', HttpStatus.BAD_REQUEST);
     }
   }
 
