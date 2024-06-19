@@ -1,5 +1,12 @@
+import { ImageEntity } from 'src/images/entities/image.entity';
 import { RouteEntity } from 'src/routes/entities/route.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('markers')
 export class MarkerEntity {
@@ -9,11 +16,14 @@ export class MarkerEntity {
   @Column()
   name: string;
 
-  // @Column()
-  // coordinates: LngLat;
+  @Column()
+  description: string;
 
-  // @Column()
-  // imagesArray: UploadFile[];
+  @Column()
+  coordinates: string;
+
+  @OneToMany(() => ImageEntity, (image) => image.marker)
+  images: ImageEntity[];
 
   @ManyToOne(() => RouteEntity, (route) => route.markers)
   route: RouteEntity;

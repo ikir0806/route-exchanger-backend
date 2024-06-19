@@ -1,3 +1,4 @@
+import { MarkerEntity } from 'src/markers/entities/marker.entity';
 import {
   Column,
   DeleteDateColumn,
@@ -5,7 +6,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserEntity } from '../../users/entities/user.entity';
 
 export enum ImageType {
   PHOTOS = 'photos',
@@ -29,8 +29,8 @@ export class ImageEntity {
   @Column()
   mimetype: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.images)
-  user: UserEntity;
+  @ManyToOne(() => MarkerEntity, (marker) => marker.images)
+  marker: MarkerEntity;
 
   @DeleteDateColumn()
   deletedAt?: Date;

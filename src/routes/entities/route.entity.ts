@@ -11,7 +11,7 @@ import {
 @Entity('routes')
 export class RouteEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column()
   name: string;
@@ -21,9 +21,6 @@ export class RouteEntity {
 
   @Column()
   location: string;
-
-  @Column()
-  marksNumber: number;
 
   @ManyToOne(() => UserEntity, (user) => user.routes)
   user: UserEntity;
