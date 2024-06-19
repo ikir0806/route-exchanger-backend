@@ -38,6 +38,7 @@ export class ImagesService {
 
   async remove(userId: number, ids: string) {
     const idsArray = ids.split(',');
+    userId = 19;
 
     const qb = this.repository.createQueryBuilder('file');
 
@@ -46,6 +47,16 @@ export class ImagesService {
       userId,
     });
 
-    return qb.softDelete().execute();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const fs = require('fs');
+
+    fs.unlink('uploads/fce9ba7fbed536924c.png', (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    });
+
+    return qb.delete().execute();
   }
 }

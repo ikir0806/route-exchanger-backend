@@ -30,11 +30,24 @@ export class AvatarService {
 
   async remove(userId: number) {
     const qb = this.repository.createQueryBuilder('file');
+    const file = await this.find(userId);
+
+    // console.log(await qb.getOne());
 
     qb.where('userId = :userId', {
       userId,
     });
 
-    return qb.softDelete().execute();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const fs = require('fs');
+
+    fs.unlink(`uploads/avatars/${file.filename}`, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    });
+
+    return qb.delete().execute();
   }
 }

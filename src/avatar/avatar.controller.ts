@@ -12,7 +12,6 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
-import { UserId } from '../decorators/user-id.decorator';
 import { AvatarService } from './avatar.service';
 import { avatarStorage } from './storage';
 
@@ -59,7 +58,7 @@ export class AvatarController {
   }
 
   @Delete()
-  remove(@UserId() userId: number) {
+  remove(@Query('userId') userId: number) {
     return this.avatarService.remove(userId);
   }
 }

@@ -13,6 +13,6 @@ const normalizeFileName = (req, file, callback) => {
 };
 
 export const avatarStorage = diskStorage({
-  destination: './uploads',
+  destination: './uploads/avatars',
   filename: normalizeFileName,
 });
