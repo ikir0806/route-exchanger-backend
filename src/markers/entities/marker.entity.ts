@@ -22,9 +22,9 @@ export class MarkerEntity {
   @Column()
   coordinates: string;
 
-  @OneToMany(() => ImageEntity, (image) => image.marker)
-  images: ImageEntity[];
-
   @ManyToOne(() => RouteEntity, (route) => route.markers)
   route: RouteEntity;
+
+  @OneToMany(() => ImageEntity, (image) => image.marker)
+  images: ImageEntity[];
 }

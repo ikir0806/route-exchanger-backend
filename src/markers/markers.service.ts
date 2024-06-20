@@ -11,7 +11,9 @@ export class MarkersService {
     private repository: Repository<MarkerEntity>,
   ) {}
 
-  async create(dto: CreateMarkerDto, routeId: number) {
-    return this.repository.save({ ...dto, route: { id: routeId } });
+  async create(dtos: CreateMarkerDto[], routeId: number) {
+    return dtos.map((dto) =>
+      this.repository.save({ ...dto, route: { id: routeId } }),
+    );
   }
 }

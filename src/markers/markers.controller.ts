@@ -12,7 +12,7 @@ export class MarkersController {
   constructor(private readonly markersService: MarkersService) {}
 
   @Post('create')
-  create(@Body() dto: CreateMarkerDto, @Query('routeId') routeId: number) {
-    return this.markersService.create(dto, routeId);
+  create(@Body() dtos: CreateMarkerDto[], @Query('routeId') routeId: number) {
+    return this.markersService.create(dtos, routeId);
   }
 }
