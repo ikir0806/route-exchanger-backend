@@ -11,8 +11,14 @@ export class RoutesService {
     private repository: Repository<RouteEntity>,
   ) {}
 
-  async findAll() {
-    return console.log('Hello');
+  async findByLocation(location: string) {
+    const qb = this.repository
+      .createQueryBuilder('route')
+      .where('route.location LIKE :location', {
+        location: `%${location}%`,
+      });
+
+    return qb.getMany();
   }
 
   async create(dto: CreateRouteDto, userId: number) {

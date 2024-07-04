@@ -55,9 +55,9 @@ export class ImagesController {
       }),
     )
     file: Express.Multer.File,
-    @Query('userId') userId: number,
+    @Query('markerId') markerId: number,
   ) {
-    return this.filesService.create(file, userId);
+    return this.filesService.create(file, markerId);
   }
 
   @Delete()

@@ -26,13 +26,13 @@ export class ImagesService {
     return qb.getMany();
   }
 
-  create(file: Express.Multer.File, userId: number) {
+  create(file: Express.Multer.File, markerId: number) {
     return this.repository.save({
       filename: file.filename,
       originalName: file.originalname,
       size: file.size,
       mimetype: file.mimetype,
-      user: { id: userId },
+      marker: { id: markerId },
     });
   }
 

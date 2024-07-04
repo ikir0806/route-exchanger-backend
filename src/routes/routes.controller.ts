@@ -11,9 +11,9 @@ import { RoutesService } from './routes.service';
 export class RoutesController {
   constructor(private readonly routesService: RoutesService) {}
 
-  @Get('findAll')
-  findAll() {
-    return this.routesService.findAll();
+  @Get('findByLocation')
+  findByLocation(@Query('location') location: string) {
+    return this.routesService.findByLocation(location);
   }
 
   @Post('create')

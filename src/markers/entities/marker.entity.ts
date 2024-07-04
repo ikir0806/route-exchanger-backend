@@ -11,7 +11,7 @@ import {
 @Entity('markers')
 export class MarkerEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column()
   name: string;
