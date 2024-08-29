@@ -1,4 +1,5 @@
 import { AvatarEntity } from 'src/avatar/entities/avatar.entity';
+import { MapEntity } from 'src/maps/entities/map.entity';
 import { RouteEntity } from 'src/routes/entities/route.entity';
 import {
   Column,
@@ -30,4 +31,7 @@ export class UserEntity {
 
   @OneToOne(() => AvatarEntity, (avatar) => avatar.user)
   avatar: AvatarEntity;
+
+  @OneToOne(() => MapEntity, (map) => map.user)
+  map: MapEntity;
 }

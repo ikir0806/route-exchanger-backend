@@ -8,6 +8,8 @@ import { AvatarModule } from './avatar/avatar.module';
 import { AvatarEntity } from './avatar/entities/avatar.entity';
 import { ImageEntity } from './images/entities/image.entity';
 import { ImagesModule } from './images/images.module';
+import { MapEntity } from './maps/entities/map.entity';
+import { MapsModule } from './maps/maps.module';
 import { MarkerEntity } from './markers/entities/marker.entity';
 import { MarkersModule } from './markers/markers.module';
 import { RouteEntity } from './routes/entities/route.entity';
@@ -31,6 +33,7 @@ import { UsersModule } from './users/users.module';
         MarkerEntity,
         ImageEntity,
         AvatarEntity,
+        MapEntity,
       ],
       synchronize: true,
     }),
@@ -40,6 +43,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     ImagesModule,
     AvatarModule,
+    MapsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
