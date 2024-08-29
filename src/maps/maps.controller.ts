@@ -23,8 +23,8 @@ export class MapsController {
   constructor(private readonly mapsService: MapsService) {}
 
   @Get()
-  find(@Query('userId') userId: number) {
-    return this.mapsService.find(userId);
+  find(@Query('routeId') routeId: number) {
+    return this.mapsService.find(routeId);
   }
 
   @Post()
@@ -52,13 +52,13 @@ export class MapsController {
       }),
     )
     file: Express.Multer.File,
-    @Query('userId') userId: number,
+    @Query('routeId') routeId: number,
   ) {
-    return this.mapsService.create(file, userId);
+    return this.mapsService.create(file, routeId);
   }
 
   @Delete()
-  remove(@Query('userId') userId: number) {
-    return this.mapsService.remove(userId);
+  remove(@Query('routeId') routeId: number) {
+    return this.mapsService.remove(routeId);
   }
 }

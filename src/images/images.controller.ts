@@ -26,7 +26,6 @@ export class ImagesController {
 
   @Get()
   findAll(@UserId() userId: number, @Query('type') fileType: ImageType) {
-    console.log(userId);
     return this.filesService.findAll(userId, fileType);
   }
 

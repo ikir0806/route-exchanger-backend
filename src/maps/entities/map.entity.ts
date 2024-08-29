@@ -1,12 +1,11 @@
+import { RouteEntity } from 'src/routes/entities/route.entity';
 import {
   Column,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserEntity } from '../../users/entities/user.entity';
 
 @Entity('map')
 export class MapEntity {
@@ -25,9 +24,8 @@ export class MapEntity {
   @Column()
   mimetype: string;
 
-  @OneToOne(() => UserEntity, (user) => user.map)
-  @JoinColumn()
-  user: UserEntity;
+  @OneToOne(() => RouteEntity, (route) => route.map)
+  route: RouteEntity;
 
   @DeleteDateColumn()
   deletedAt?: Date;

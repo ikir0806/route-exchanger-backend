@@ -10,32 +10,32 @@ export class MapsService {
     private repository: Repository<MapEntity>,
   ) {}
 
-  find(userId: number) {
+  find(routeId: number) {
     return this.repository.findOneBy({
-      user: {
-        id: userId,
+      route: {
+        id: routeId,
       },
     });
   }
 
-  create(file: Express.Multer.File, userId: number) {
+  create(file: Express.Multer.File, routeId: number) {
     return this.repository.save({
       filename: file.filename,
       originalName: file.originalname,
       size: file.size,
       mimetype: file.mimetype,
-      user: { id: userId },
+      user: { id: routeId },
     });
   }
 
-  async remove(userId: number) {
+  async remove(routeId: number) {
     const qb = this.repository.createQueryBuilder('file');
-    const file = await this.find(userId);
+    const file = await this.find(routeId);
 
     // console.log(await qb.getOne());
 
-    qb.where('userId = :userId', {
-      userId,
+    qb.where('routeId = :routeId', {
+      routeId,
     });
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires

@@ -21,6 +21,14 @@ export class RoutesService {
     return qb.getMany();
   }
 
+  async findByUser(userId: number) {
+    const qb = this.repository.createQueryBuilder('route');
+
+    qb.where('route.userId = :userId', { userId });
+
+    return qb.getMany();
+  }
+
   async create(dto: CreateRouteDto, userId: number) {
     return this.repository.save({ ...dto, user: { id: userId } });
   }

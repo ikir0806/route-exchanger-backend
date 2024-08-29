@@ -16,6 +16,12 @@ export class RoutesController {
     return this.routesService.findByLocation(location);
   }
 
+  @Get('findByUser')
+  findByUser(@Query('userId') userId: number) {
+    console.log(userId);
+    return this.routesService.findByUser(userId);
+  }
+
   @Post('create')
   create(@Body() dto: CreateRouteDto, @Query('userId') userId: number) {
     return this.routesService.create(dto, userId);
