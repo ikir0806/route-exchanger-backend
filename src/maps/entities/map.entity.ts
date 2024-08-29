@@ -3,6 +3,7 @@ import {
   Column,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -25,6 +26,7 @@ export class MapEntity {
   mimetype: string;
 
   @OneToOne(() => RouteEntity, (route) => route.map)
+  @JoinColumn()
   route: RouteEntity;
 
   @DeleteDateColumn()

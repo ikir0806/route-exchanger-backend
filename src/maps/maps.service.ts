@@ -24,7 +24,7 @@ export class MapsService {
       originalName: file.originalname,
       size: file.size,
       mimetype: file.mimetype,
-      user: { id: routeId },
+      route: { id: routeId },
     });
   }
 
