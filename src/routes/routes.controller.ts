@@ -18,7 +18,6 @@ export class RoutesController {
 
   @Get('findByUser')
   findByUser(@Query('userId') userId: number) {
-    console.log(userId);
     return this.routesService.findByUser(userId);
   }
 
