@@ -5,12 +5,12 @@ import {
   ParseFilePipe,
   Post,
   Query,
-  UploadedFile,
+  UploadedFiles,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { UserId } from '../decorators/user-id.decorator';
 import { ImageType } from './entities/image.entity';
@@ -31,32 +31,21 @@ export class ImagesController {
 
   @Post()
   @UseInterceptors(
-    FileInterceptor('file', {
+    FilesInterceptor('files', 10, {
+      // 10 - максимальное количество загружаемых файлов
       storage: imageStorage,
     }),
   )
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        file: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
-  })
   create(
-    @UploadedFile(
+    @UploadedFiles(
       new ParseFilePipe({
         validators: [],
       }),
     )
-    file: Express.Multer.File,
+    files: Express.Multer.File[],
     @Query('markerId') markerId: number,
   ) {
-    return this.filesService.create(file, markerId);
+    return this.filesService.create(files, markerId);
   }
 
   @Delete()

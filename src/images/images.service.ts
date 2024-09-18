@@ -26,19 +26,20 @@ export class ImagesService {
     return qb.getMany();
   }
 
-  create(file: Express.Multer.File, markerId: number) {
-    return this.repository.save({
-      filename: file.filename,
-      originalName: file.originalname,
-      size: file.size,
-      mimetype: file.mimetype,
-      marker: { id: markerId },
+  create(files: Express.Multer.File[], markerId: number) {
+    return files.map((file) => {
+      this.repository.save({
+        filename: file.filename,
+        originalName: file.originalname,
+        size: file.size,
+        mimetype: file.mimetype,
+        marker: { id: markerId },
+      });
     });
   }
 
   async remove(userId: number, ids: string) {
     const idsArray = ids.split(',');
-    userId = 19;
 
     const qb = this.repository.createQueryBuilder('file');
 
