@@ -1,5 +1,5 @@
-import { ImageEntity } from 'src/images/entities/image.entity';
-import { RouteEntity } from 'src/routes/entities/route.entity';
+import { ImageEntity } from 'src/image/entities/image.entity';
+import { RouteEntity } from 'src/route/entities/route.entity';
 import {
   Column,
   Entity,
@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('markers')
+@Entity('marker')
 export class MarkerEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -2,27 +2,27 @@ import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { CreateRouteDto } from './dto/create-route.dto';
-import { RoutesService } from './routes.service';
+import { RouteService } from './route.service';
 
-@Controller('routes')
-@ApiTags('routes')
+@Controller('route')
+@ApiTags('route')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
-export class RoutesController {
-  constructor(private readonly routesService: RoutesService) {}
+export class RouteController {
+  constructor(private readonly routeService: RouteService) {}
 
   @Get('findByLocation')
   findByLocation(@Query('location') location: string) {
-    return this.routesService.findByLocation(location);
+    return this.routeService.findByLocation(location);
   }
 
   @Get('findByUser')
   findByUser(@Query('userId') userId: number) {
-    return this.routesService.findByUser(userId);
+    return this.routeService.findByUser(userId);
   }
 
   @Post('create')
   create(@Body() dto: CreateRouteDto, @Query('userId') userId: number) {
-    return this.routesService.create(dto, userId);
+    return this.routeService.create(dto, userId);
   }
 }

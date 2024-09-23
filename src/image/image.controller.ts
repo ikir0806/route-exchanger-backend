@@ -14,19 +14,19 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { UserId } from '../decorators/user-id.decorator';
 import { ImageType } from './entities/image.entity';
-import { ImagesService } from './images.service';
+import { ImageService } from './image.service';
 import { imageStorage } from './storage';
 
-@Controller('images')
-@ApiTags('images')
+@Controller('image')
+@ApiTags('image')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
-export class ImagesController {
-  constructor(private readonly filesService: ImagesService) {}
+export class ImageController {
+  constructor(private readonly imageService: ImageService) {}
 
   @Get()
   findAll(@UserId() userId: number, @Query('type') fileType: ImageType) {
-    return this.filesService.findAll(userId, fileType);
+    return this.imageService.findAll(userId, fileType);
   }
 
   @Post()
@@ -45,11 +45,11 @@ export class ImagesController {
     files: Express.Multer.File[],
     @Query('markerId') markerId: number,
   ) {
-    return this.filesService.create(files, markerId);
+    return this.imageService.create(files, markerId);
   }
 
   @Delete()
   remove(@UserId() userId: number, @Query('ids') ids: string) {
-    return this.filesService.remove(userId, ids);
+    return this.imageService.remove(userId, ids);
   }
 }

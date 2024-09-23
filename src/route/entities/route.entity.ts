@@ -1,6 +1,6 @@
-import { MapEntity } from 'src/maps/entities/map.entity';
-import { MarkerEntity } from 'src/markers/entities/marker.entity';
-import { UserEntity } from 'src/users/entities/user.entity';
+import { MapEntity } from 'src/map/entities/map.entity';
+import { MarkerEntity } from 'src/marker/entities/marker.entity';
+import { UserEntity } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,7 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('routes')
+@Entity('route')
 export class RouteEntity {
   @PrimaryGeneratedColumn()
   id: number;

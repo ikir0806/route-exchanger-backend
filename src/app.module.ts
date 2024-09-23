@@ -6,16 +6,16 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AvatarModule } from './avatar/avatar.module';
 import { AvatarEntity } from './avatar/entities/avatar.entity';
-import { ImageEntity } from './images/entities/image.entity';
-import { ImagesModule } from './images/images.module';
-import { MapEntity } from './maps/entities/map.entity';
-import { MapsModule } from './maps/maps.module';
-import { MarkerEntity } from './markers/entities/marker.entity';
-import { MarkersModule } from './markers/markers.module';
-import { RouteEntity } from './routes/entities/route.entity';
-import { RoutesModule } from './routes/routes.module';
-import { UserEntity } from './users/entities/user.entity';
-import { UsersModule } from './users/users.module';
+import { ImageEntity } from './image/entities/image.entity';
+import { ImageModule } from './image/image.module';
+import { MapEntity } from './map/entities/map.entity';
+import { MapModule } from './map/map.module';
+import { MarkerEntity } from './marker/entities/marker.entity';
+import { MarkerModule } from './marker/marker.module';
+import { RouteEntity } from './route/entities/route.entity';
+import { RouteModule } from './route/route.module';
+import { UserEntity } from './user/entities/user.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -37,13 +37,13 @@ import { UsersModule } from './users/users.module';
       ],
       synchronize: true,
     }),
-    UsersModule,
-    RoutesModule,
-    MarkersModule,
+    UserModule,
+    RouteModule,
+    MarkerModule,
     AuthModule,
-    ImagesModule,
+    ImageModule,
     AvatarModule,
-    MapsModule,
+    MapModule,
   ],
   controllers: [AppController],
   providers: [AppService],

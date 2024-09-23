@@ -12,25 +12,25 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
-import { MapsService } from './maps.service';
-import { mapsStorage } from './storage';
+import { MapService } from './map.service';
+import { mapStorage } from './storage';
 
-@Controller('maps')
-@ApiTags('maps')
+@Controller('map')
+@ApiTags('map')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
-export class MapsController {
-  constructor(private readonly mapsService: MapsService) {}
+export class MapController {
+  constructor(private readonly mapService: MapService) {}
 
   @Get()
   find(@Query('routeId') routeId: number) {
-    return this.mapsService.find(routeId);
+    return this.mapService.find(routeId);
   }
 
   @Post()
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: mapsStorage,
+      storage: mapStorage,
     }),
   )
   @ApiConsumes('multipart/form-data')
@@ -54,11 +54,11 @@ export class MapsController {
     file: Express.Multer.File,
     @Query('routeId') routeId: number,
   ) {
-    return this.mapsService.create(file, routeId);
+    return this.mapService.create(file, routeId);
   }
 
   @Delete()
   remove(@Query('routeId') routeId: number) {
-    return this.mapsService.remove(routeId);
+    return this.mapService.remove(routeId);
   }
 }

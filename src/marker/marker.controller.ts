@@ -1,18 +1,18 @@
 import { Body, Controller, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CreateMarkerDto } from './dto/create-marker.dto';
-import { MarkersService } from './markers.service';
+import { CreateMarkerDto } from '../marker/dto/create-marker.dto';
+import { MarkerService } from './marker.service';
 
-@Controller('markers')
-@ApiTags('markers')
+@Controller('marker')
+@ApiTags('marker')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
-export class MarkersController {
-  constructor(private readonly markersService: MarkersService) {}
+export class MarkerController {
+  constructor(private readonly markerService: MarkerService) {}
 
   @Post('create')
   create(@Body() dto: CreateMarkerDto, @Query('routeId') routeId: number) {
-    return this.markersService.create(dto, routeId);
+    return this.markerService.create(dto, routeId);
   }
 }

@@ -5,7 +5,7 @@ import { CreateRouteDto } from './dto/create-route.dto';
 import { RouteEntity } from './entities/route.entity';
 
 @Injectable()
-export class RoutesService {
+export class RouteService {
   constructor(
     @InjectRepository(RouteEntity)
     private repository: Repository<RouteEntity>,

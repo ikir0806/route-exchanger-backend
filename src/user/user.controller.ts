@@ -3,19 +3,19 @@ import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { UserId } from 'src/decorators/user-id.decorator';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 
-@Controller('users')
-@ApiTags('users')
-export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+@Controller('user')
+@ApiTags('user')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Get('/me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   async getMe(@UserId() id: number) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...user } = await this.usersService.findById(id);
+    const { password, ...user } = await this.userService.findById(id);
     return user;
   }
 
@@ -25,6 +25,6 @@ export class UsersController {
   @ApiBody({ type: UpdateUserDto })
   async updateMe(@Body() dto: UpdateUserDto) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    await this.usersService.update(dto);
+    await this.userService.update(dto);
   }
 }

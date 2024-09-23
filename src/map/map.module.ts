@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MapEntity } from './entities/map.entity';
-import { MapsController } from './maps.controller';
-import { MapsService } from './maps.service';
+import { MapController } from './map.controller';
+import { MapService } from './map.service';
 
 @Module({
-  controllers: [MapsController],
-  providers: [MapsService],
+  controllers: [MapController],
+  providers: [MapService],
   imports: [TypeOrmModule.forFeature([MapEntity])],
 })
-export class MapsModule {}
+export class MapModule {}

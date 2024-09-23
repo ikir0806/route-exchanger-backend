@@ -1,4 +1,4 @@
-import { RouteEntity } from 'src/routes/entities/route.entity';
+import { RouteEntity } from 'src/route/entities/route.entity';
 import {
   Column,
   DeleteDateColumn,
@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('maps')
+@Entity('map')
 export class MapEntity {
   @PrimaryGeneratedColumn()
   id: number;

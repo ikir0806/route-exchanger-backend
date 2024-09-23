@@ -5,7 +5,7 @@ import { CreateMarkerDto } from './dto/create-marker.dto';
 import { MarkerEntity } from './entities/marker.entity';
 
 @Injectable()
-export class MarkersService {
+export class MarkerService {
   constructor(
     @InjectRepository(MarkerEntity)
     private repository: Repository<MarkerEntity>,

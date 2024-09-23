@@ -1,5 +1,5 @@
 import { AvatarEntity } from 'src/avatar/entities/avatar.entity';
-import { RouteEntity } from 'src/routes/entities/route.entity';
+import { RouteEntity } from 'src/route/entities/route.entity';
 import {
   Column,
   Entity,
@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('users')
+@Entity('user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;

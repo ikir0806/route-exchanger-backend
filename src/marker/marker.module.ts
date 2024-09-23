@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MarkerEntity } from './entities/marker.entity';
-import { MarkersController } from './markers.controller';
-import { MarkersService } from './markers.service';
+import { MarkerController } from './marker.controller';
+import { MarkerService } from './marker.service';
 
 @Module({
-  controllers: [MarkersController],
-  providers: [MarkersService],
+  controllers: [MarkerController],
+  providers: [MarkerService],
   imports: [TypeOrmModule.forFeature([MarkerEntity])],
 })
-export class MarkersModule {}
+export class MarkerModule {}

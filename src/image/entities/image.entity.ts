@@ -1,4 +1,4 @@
-import { MarkerEntity } from 'src/markers/entities/marker.entity';
+import { MarkerEntity } from 'src/marker/entities/marker.entity';
 import {
   Column,
   DeleteDateColumn,
@@ -12,7 +12,7 @@ export enum ImageType {
   TRASH = 'trash',
 }
 
-@Entity('images')
+@Entity('image')
 export class ImageEntity {
   @PrimaryGeneratedColumn()
   id: number;

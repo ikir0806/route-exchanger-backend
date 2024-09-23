@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { MapEntity } from './entities/map.entity';
 
 @Injectable()
-export class MapsService {
+export class MapService {
   constructor(
     @InjectRepository(MapEntity)
     private repository: Repository<MapEntity>,
@@ -41,7 +41,7 @@ export class MapsService {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const fs = require('fs');
 
-    fs.unlink(`uploads/map/${file.filename}`, (err) => {
+    fs.unlink(`uploads/maps/${file.filename}`, (err) => {
       if (err) {
         console.error(err);
         return;

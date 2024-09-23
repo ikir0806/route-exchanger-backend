@@ -12,7 +12,7 @@ const normalizeFileName = (req, file, callback) => {
   callback(null, `${generateId()}.${fileExtName}`);
 };
 
-export const mapsStorage = diskStorage({
+export const mapStorage = diskStorage({
   destination: './uploads/maps',
   filename: normalizeFileName,
 });
