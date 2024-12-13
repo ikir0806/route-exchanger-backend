@@ -30,6 +30,20 @@ export class RouteService {
   }
 
   async create(dto: CreateRouteDto, userId: number) {
-    return this.repository.save({ ...dto, user: { id: userId } });
+    return this.repository.save({
+      ...dto,
+      user: { id: userId },
+      mapFilename: '',
+    });
+  }
+
+  async addMap(mapFilename: string, routeId: number) {
+    const result = await this.repository.update(routeId, { mapFilename });
+
+    if (result.affected === 0) {
+      throw new Error('Route not found');
+    }
+
+    return { message: 'Map filename updated successfully' };
   }
 }

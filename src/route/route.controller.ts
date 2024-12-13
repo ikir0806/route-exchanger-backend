@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { CreateRouteDto } from './dto/create-route.dto';
@@ -24,5 +32,13 @@ export class RouteController {
   @Post('create')
   create(@Body() dto: CreateRouteDto, @Query('userId') userId: number) {
     return this.routeService.create(dto, userId);
+  }
+
+  @Patch('addMap')
+  addMap(
+    @Query('routeId') routeId: number,
+    @Query('mapFilename') mapFilename: string,
+  ) {
+    return this.routeService.addMap(mapFilename, routeId);
   }
 }
