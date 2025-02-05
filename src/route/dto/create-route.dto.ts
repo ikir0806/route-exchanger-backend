@@ -9,4 +9,7 @@ export class CreateRouteDto {
 
   @ApiProperty({ default: 'Москва, Россия' })
   location: string;
+
+  @ApiProperty({ default: 'anonimous' })
+  username: string;
 }

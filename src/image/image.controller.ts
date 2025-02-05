@@ -24,9 +24,14 @@ import { imageStorage } from './storage';
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
-  @Get()
-  findAll(@UserId() userId: number, @Query('type') fileType: ImageType) {
-    return this.imageService.findAll(userId, fileType);
+  @Get('getAllImages')
+  getAllImages(@UserId() userId: number, @Query('type') fileType: ImageType) {
+    return this.imageService.getAllImages(userId, fileType);
+  }
+
+  @Get('getImagesByRouteId')
+  getImagesByRouteId(@Query('routeId') routeId: number) {
+    return this.imageService.getImagesByRouteId(routeId);
   }
 
   @Post()
@@ -44,8 +49,9 @@ export class ImageController {
     )
     files: Express.Multer.File[],
     @Query('markerId') markerId: number,
+    @Query('routeId') routeId: number,
   ) {
-    return this.imageService.create(files, markerId);
+    return this.imageService.create(files, markerId, routeId);
   }
 
   @Delete()

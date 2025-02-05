@@ -29,6 +29,9 @@ export class ImageEntity {
   @Column()
   mimetype: string;
 
+  @Column()
+  routeId: number;
+
   @ManyToOne(() => MarkerEntity, (marker) => marker.images)
   marker: MarkerEntity;
 

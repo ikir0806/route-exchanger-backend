@@ -10,7 +10,7 @@ export class ImageService {
     private repository: Repository<ImageEntity>,
   ) {}
 
-  findAll(userId: number, imageType: ImageType) {
+  getAllImages(userId: number, imageType: ImageType) {
     const qb = this.repository.createQueryBuilder('file');
 
     qb.where('file.userId = :userId', { userId });
@@ -26,7 +26,15 @@ export class ImageService {
     return qb.getMany();
   }
 
-  create(files: Express.Multer.File[], markerId: number) {
+  getImagesByRouteId(routeId: number) {
+    const qb = this.repository.createQueryBuilder('file');
+
+    qb.where('file.routeId = :routeId', { routeId });
+
+    return qb.getMany().then((files) => files.map((file) => file.filename));
+  }
+
+  create(files: Express.Multer.File[], markerId: number, routeId: number) {
     return files.map((file) => {
       this.repository.save({
         filename: file.filename,
@@ -34,6 +42,7 @@ export class ImageService {
         size: file.size,
         mimetype: file.mimetype,
         marker: { id: markerId },
+        routeId,
       });
     });
   }

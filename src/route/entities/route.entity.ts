@@ -27,6 +27,9 @@ export class RouteEntity {
   location: string;
 
   @Column()
+  username: string;
+
+  @Column()
   mapFilename: string;
 
   @ManyToOne(() => UserEntity, (user) => user.routes)
